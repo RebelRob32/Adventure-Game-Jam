@@ -693,6 +693,7 @@ MonoBehaviour:
   inputVector: {x: 0, y: 0}
   rotationSpeed: 0
   walkSpeed: 0
+  sprintSpeed: 0
 --- !u!114 &545377232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1259,9 +1260,9 @@ GameObject:
   - component: {fileID: 1051713265}
   - component: {fileID: 1051713264}
   - component: {fileID: 1051713263}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
