@@ -26,7 +26,7 @@ public partial class PlayerStateManager : MonoBehaviour
 
         public void Update()
         {
-            if(currentState != fallState && !controller.isGrounded)
+            if(currentState != jumpState && currentState != fallState && !controller.isGrounded)
             {
                 SwitchState(fallState);
             }

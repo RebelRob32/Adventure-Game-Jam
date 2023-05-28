@@ -12,6 +12,7 @@ public partial class PlayerStateManager
         public PlayerIdleState idleState = new PlayerIdleState();
         public PlayerRunState runState = new PlayerRunState();
         public PlayerFallState fallState = new PlayerFallState();
+        public PlayerJumpState jumpState = new PlayerJumpState();
 
     public CharacterController controller;
 
