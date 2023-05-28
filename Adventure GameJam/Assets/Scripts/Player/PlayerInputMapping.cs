@@ -14,8 +14,7 @@ public partial class PlayerStateManager
             moveVector.x = inputVector.x;
             moveVector.z = inputVector.y;
 
-            Debug.Log($"x move:{moveVector.x}");
-            Debug.Log($"z move:{moveVector.y}");
+           
         }
 
 }
