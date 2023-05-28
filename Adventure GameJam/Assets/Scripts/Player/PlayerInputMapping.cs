@@ -13,9 +13,24 @@ public partial class PlayerStateManager
             inputVector = value.Get<Vector2>();
             moveVector.x = inputVector.x;
             moveVector.z = inputVector.y;
-
-           
         }
+
+       public void OnJump(InputValue value)
+        {
+            if(currentState != jumpState && currentState != fallState)
+            {
+                SwitchState(jumpState);
+            }
+            
+            
+        }
+
+        public void OnSprint(InputValue value)
+        {
+            SwitchState(runState);
+        }
+
+        
 
 }
 
