@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Base Enemy
   m_EditorClassIdentifier: 
   speed: 5
-  detectRange: 0
-  foundRange: 0
+  radius: 5
+  angle: 45
   health: 0
   attack: 0
   wanderRadius: 15

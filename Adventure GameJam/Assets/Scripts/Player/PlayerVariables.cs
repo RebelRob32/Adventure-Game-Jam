@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 
 namespace AGJ.Player
@@ -26,6 +27,12 @@ public partial class PlayerStateManager
     public float rotationSpeed;
     public float walkSpeed;
         public float sprintSpeed;
+
+        public float health;
+        public float fearLevel;
+        public Slider healthSlider;
+        public Slider fearSlider;
+        
 
     private Vector3 gravity;
 }
