@@ -12,12 +12,14 @@ public class EnemyMovement : MonoBehaviour
         [SerializeField] private Vector3 walkPoint;
         [SerializeField] private bool walkPointSet;
         [SerializeField] NavMeshAgent agent;
+        
 
-        public void Update()
+       public void AttackPlayer()
         {
-            Wander();
-        }
 
+        }
+      
+       
 
         public void Wander()
         {
