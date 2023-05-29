@@ -12,14 +12,28 @@ public class EnemyMovement : MonoBehaviour
         [SerializeField] private Vector3 walkPoint;
         [SerializeField] private bool walkPointSet;
         [SerializeField] NavMeshAgent agent;
-        
+        public Transform patrolPoint1;
+        public Transform patrolPoint2;
 
-       public void AttackPlayer()
+        public void Start()
+        {
+            StartCoroutine(Patrol());
+        }
+
+
+        public void AttackPlayer()
         {
 
         }
       
-       
+      public IEnumerator Patrol()
+        {
+            agent.SetDestination(patrolPoint2.transform.position);
+            yield return new WaitForSeconds(10);
+            agent.SetDestination(patrolPoint1.transform.position);
+            yield return new WaitForSeconds(10);
+            StartCoroutine(Patrol());
+        }
 
         public void Wander()
         {
