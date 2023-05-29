@@ -14,6 +14,8 @@ public partial class PlayerStateManager : MonoBehaviour
             walkSpeed = 5f;
             sprintSpeed = 7f;
             rotationSpeed = 2.5f;
+            health = 100;
+            fearLevel = 0;
 
             gravity = new Vector3(0, -9.81f, 0);
         }
@@ -26,6 +28,9 @@ public partial class PlayerStateManager : MonoBehaviour
 
         public void Update()
         {
+
+            TrackHealthandFear();
+
             if(currentState != jumpState && currentState != fallState && !controller.isGrounded)
             {
                 SwitchState(fallState);
@@ -67,6 +72,12 @@ public partial class PlayerStateManager : MonoBehaviour
 
             var rotation = Quaternion.LookRotation(xzDir);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, rotationSpeed);
+        }
+
+        public void TrackHealthandFear()
+        {
+            healthSlider.value = health;
+            fearSlider.value = fearLevel;
         }
 
     }
