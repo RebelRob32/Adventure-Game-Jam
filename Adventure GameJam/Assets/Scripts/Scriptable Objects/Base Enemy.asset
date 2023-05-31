@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   radius: 5
+  attackRadius: 2.5
   angle: 45
-  health: 0
-  attack: 0
+  health: 50
+  attack: 10
   wanderRadius: 15

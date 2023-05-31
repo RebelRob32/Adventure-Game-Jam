@@ -8,8 +8,10 @@ namespace AGJ.Enemy
 public class EnemyVariables : ScriptableObject
 {
         public float speed;
+        [Range(0, 360)]
         public float radius;
-        [Range(0,360)]
+        [Range(0, 360)]
+        public float attackRadius;
         public float angle;
         public float health;
         public float attack;
