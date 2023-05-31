@@ -5,25 +5,33 @@ using UnityEngine.AI;
 
 namespace AGJ.Enemy
 {
-public class EnemyMovement : MonoBehaviour
-{
+    public class EnemyMovement : MonoBehaviour
+    {
         public EnemyVariables stats;
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private Vector3 walkPoint;
         [SerializeField] private bool walkPointSet;
         [SerializeField] NavMeshAgent agent;
+        public Transform player;
         public Transform patrolPoint1;
         public Transform patrolPoint2;
 
         public void Start()
         {
             StartCoroutine(Patrol());
+            player = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
 
+        public void MoveToLastPosition()
+        {
+            agent.SetDestination(player.transform.position);
+        }
+
         public void AttackPlayer()
         {
-
+            agent.SetDestination(player.transform.position);
+            transform.LookAt(player);
         }
       
       public IEnumerator Patrol()
@@ -35,36 +43,9 @@ public class EnemyMovement : MonoBehaviour
             StartCoroutine(Patrol());
         }
 
-        public void Wander()
+        public void ReturnToPatrol()
         {
-            if (!walkPointSet)
-            {
-                float randomZ = Random.Range(-stats.wanderRadius, stats.wanderRadius);
-                float randomX = Random.Range(-stats.wanderRadius, stats.wanderRadius);
-
-                walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-
-                if (Physics.Raycast(walkPoint, -transform.up, 2f, groundLayer))
-                {
-                    walkPointSet = true;
-                    //anim.SetFloat("Speed", 0, 0.1f, Time.deltaTime);
-                }
-            }
-
-            if (walkPointSet == true)
-            {
-                agent.speed = stats.speed;
-                agent.SetDestination(walkPoint);
-                //anim.SetFloat("Speed", 0.5f, 0.1f, Time.deltaTime);
-            }
-
-            Vector3 distToWalkPoint = transform.position - walkPoint;
-            if (distToWalkPoint.magnitude < 1f)
-            {
-                walkPointSet = false;
-            }
-
-
+            StartCoroutine(Patrol());
         }
 
     }

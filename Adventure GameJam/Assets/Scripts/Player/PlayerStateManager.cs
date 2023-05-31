@@ -80,6 +80,20 @@ public partial class PlayerStateManager : MonoBehaviour
             fearSlider.value = fearLevel;
         }
 
+        public void TakeDamage(float amount)
+        {
+            health -= amount;
+            if (health <= 0f)
+            {
+                Die();
+            }
+        }
+
+        public void Die()
+        {
+            Debug.Log("Player Dead, Game Over");
+        }
+
     }
 
 
