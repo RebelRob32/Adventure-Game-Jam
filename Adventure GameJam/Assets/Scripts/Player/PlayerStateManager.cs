@@ -80,6 +80,12 @@ public partial class PlayerStateManager : MonoBehaviour
             fearSlider.value = fearLevel;
         }
 
+        public void Attack()
+        {
+            //fires attack animation
+            
+        }
+
         public void TakeDamage(float amount)
         {
             health -= amount;

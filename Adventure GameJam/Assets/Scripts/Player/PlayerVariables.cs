@@ -14,6 +14,7 @@ public partial class PlayerStateManager
         public PlayerRunState runState = new PlayerRunState();
         public PlayerFallState fallState = new PlayerFallState();
         public PlayerJumpState jumpState = new PlayerJumpState();
+        public PlayerAttackState attackState = new PlayerAttackState();
 
     public CharacterController controller;
 

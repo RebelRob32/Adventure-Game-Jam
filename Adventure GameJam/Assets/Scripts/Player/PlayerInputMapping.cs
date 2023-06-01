@@ -30,6 +30,10 @@ public partial class PlayerStateManager
             SwitchState(runState);
         }
 
+        public void OnAttack(InputValue value)
+        {
+            SwitchState(attackState);
+        }
         
 
 }
