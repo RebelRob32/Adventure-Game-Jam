@@ -12,7 +12,7 @@ public partial class PlayerStateManager : MonoBehaviour
             controller = GetComponent<CharacterController>();
             input = GetComponent<PlayerInput>();
             walkSpeed = 5f;
-            sprintSpeed = 7f;
+            sprintSpeed = 10f;
             rotationSpeed = 2.5f;
             health = 100;
             fearLevel = 0;
@@ -60,6 +60,11 @@ public partial class PlayerStateManager : MonoBehaviour
         public void Sprint()
         {
             controller.Move(sprintSpeed * moveVector * Time.deltaTime);
+        }
+
+        public void CrouchDown()
+        {
+            //player crouches, becoming less visible to enemies when hiding behind things
         }
 
         public void Rotate()

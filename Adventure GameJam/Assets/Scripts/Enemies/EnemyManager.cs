@@ -84,9 +84,13 @@ public class EnemyManager : MonoBehaviour
                     {
                         playerFound = true;
                         EnemyMovement movement = GetComponent<EnemyMovement>();
-                        movement.AttackPlayer();
+                        movement.ChasePlayer();
                         currentAttackRadius = 10;
                         currentAngle = 90;
+                        if(distanceToTarget <=1)
+                        {
+                            AttackPlayer();
+                        }
                         
                     }
                     else
@@ -123,6 +127,10 @@ public class EnemyManager : MonoBehaviour
 
         }
 
+        public void AttackPlayer()
+        {
+            //attack player with melee attack
+        }
 
         public void TakeDamage(float amount)
         {

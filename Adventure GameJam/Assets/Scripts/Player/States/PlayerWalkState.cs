@@ -21,7 +21,7 @@ namespace AGJ.Player
             {
                 player.SwitchState(player.idleState);
             }
-            else
+            else if (player.currentState != player.runState)
             {
                 player.Move();
                 player.Rotate();
