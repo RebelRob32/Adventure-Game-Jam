@@ -12,6 +12,8 @@ public class EnemyManager : MonoBehaviour
         public bool playerFound;
         public float currentHealth;
         public float currentAngle;
+        public float currentRadius;
+        public float currentAttackRadius;
         private EnemyMovement movement; 
 
         public void Awake()
@@ -19,6 +21,9 @@ public class EnemyManager : MonoBehaviour
             
             currentHealth = stats.health;
             currentAngle = stats.angle;
+            currentRadius = stats.radius;
+            currentAttackRadius = stats.attackRadius;
+
            movement = GetComponent<EnemyMovement>();
         }
 
@@ -30,7 +35,7 @@ public class EnemyManager : MonoBehaviour
 
         public void DetectPlayer()
         {
-            Collider[] rangeCheck = Physics.OverlapSphere(transform.position, stats.radius, playerLayer);
+            Collider[] rangeCheck = Physics.OverlapSphere(transform.position, currentRadius, playerLayer);
             if(rangeCheck.Length != 0)
             {
                 Transform target = rangeCheck[0].transform;
@@ -43,6 +48,8 @@ public class EnemyManager : MonoBehaviour
                         playerFound = true;
                         
                         movement.MoveToLastPosition();
+                        currentRadius = 15;
+                        currentAngle = 90;
                         
                     }
                     else
@@ -51,6 +58,8 @@ public class EnemyManager : MonoBehaviour
                 else
                 {
                     playerFound = false;
+                    currentRadius = stats.radius;
+                    currentAngle = stats.angle;
                     
                 }
             }
@@ -63,7 +72,7 @@ public class EnemyManager : MonoBehaviour
         
         public void FoundPlayer()
         {
-            Collider[] rangeCheck = Physics.OverlapSphere(transform.position, stats.attackRadius, playerLayer);
+            Collider[] rangeCheck = Physics.OverlapSphere(transform.position, currentAttackRadius, playerLayer);
             if(rangeCheck.Length != 0)
             {
                 Transform target = rangeCheck[0].transform;
@@ -76,6 +85,8 @@ public class EnemyManager : MonoBehaviour
                         playerFound = true;
                         EnemyMovement movement = GetComponent<EnemyMovement>();
                         movement.AttackPlayer();
+                        currentAttackRadius = 10;
+                        currentAngle = 90;
                         
                     }
                     else
@@ -86,6 +97,8 @@ public class EnemyManager : MonoBehaviour
                 {
                     playerFound = false;
                     movement.ReturnToPatrol();
+                    currentAttackRadius = stats.attackRadius;
+                    currentAngle = stats.angle;
                   
                 }
             }

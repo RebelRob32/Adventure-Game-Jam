@@ -53,6 +53,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""18cc1fb6-6b41-43d0-86b3-cd7d9cc8d49f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -135,12 +144,56 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""984a03af-b122-4eda-a668-98b3e00e3f9b"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""b46f8d35-4553-4ea8-a444-f157f0f1b46a"",
                     ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7978a8d4-6b71-4c6e-825b-102fe1ff9127"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""baac38bc-6751-4bf3-a43f-bb45d0e936b8"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""45677c22-37bc-45f3-922a-325a9572704b"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -154,6 +207,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerInput_Move = m_PlayerInput.FindAction("Move", throwIfNotFound: true);
         m_PlayerInput_Jump = m_PlayerInput.FindAction("Jump", throwIfNotFound: true);
         m_PlayerInput_Sprint = m_PlayerInput.FindAction("Sprint", throwIfNotFound: true);
+        m_PlayerInput_Attack = m_PlayerInput.FindAction("Attack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -216,6 +270,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerInput_Move;
     private readonly InputAction m_PlayerInput_Jump;
     private readonly InputAction m_PlayerInput_Sprint;
+    private readonly InputAction m_PlayerInput_Attack;
     public struct PlayerInputActions
     {
         private @PlayerControls m_Wrapper;
@@ -223,6 +278,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_PlayerInput_Move;
         public InputAction @Jump => m_Wrapper.m_PlayerInput_Jump;
         public InputAction @Sprint => m_Wrapper.m_PlayerInput_Sprint;
+        public InputAction @Attack => m_Wrapper.m_PlayerInput_Attack;
         public InputActionMap Get() { return m_Wrapper.m_PlayerInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -241,6 +297,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Sprint.started -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnSprint;
                 @Sprint.performed -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnSprint;
                 @Sprint.canceled -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnSprint;
+                @Attack.started -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnAttack;
+                @Attack.performed -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnAttack;
+                @Attack.canceled -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnAttack;
             }
             m_Wrapper.m_PlayerInputActionsCallbackInterface = instance;
             if (instance != null)
@@ -254,6 +313,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
             }
         }
     }
@@ -263,5 +325,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
     }
 }
