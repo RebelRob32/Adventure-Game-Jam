@@ -12,6 +12,7 @@ public partial class PlayerStateManager
         public PlayerWalkState walkState = new PlayerWalkState();
         public PlayerIdleState idleState = new PlayerIdleState();
         public PlayerRunState runState = new PlayerRunState();
+        public PlayerCrouchState crouchState = new PlayerCrouchState();
         public PlayerFallState fallState = new PlayerFallState();
         public PlayerJumpState jumpState = new PlayerJumpState();
         public PlayerAttackState attackState = new PlayerAttackState();

@@ -28,7 +28,7 @@ namespace AGJ.Enemy
             agent.SetDestination(player.transform.position);
         }
 
-        public void AttackPlayer()
+        public void ChasePlayer()
         {
             agent.SetDestination(player.transform.position);
             transform.LookAt(player);
