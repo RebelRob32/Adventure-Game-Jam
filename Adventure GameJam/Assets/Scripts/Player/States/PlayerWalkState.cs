@@ -24,7 +24,6 @@ namespace AGJ.Player
             else if (player.currentState != player.runState)
             {
                 player.Move();
-              
             }
         }
     }
