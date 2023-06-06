@@ -12,19 +12,24 @@ namespace AGJ.Player
 
         public override void ExitState(PlayerStateManager player)
         {
-            
-
+           
         }
 
         public override void UpdateState(PlayerStateManager player)
         {
-
-            if (player.currentState != player.walkState || player.currentState != player.idleState)
+           
+            if(player.moveVector.magnitude == 0 && player.currentState != player.walkState || player.currentState != player.runState)
+            {
+                player.SwitchState(player.idleState);
+            }
+            else if(player.currentState == player.runState)
             {
                 player.Sprint();
             }
            
-            
+           
+
+
         }
     }
 }
