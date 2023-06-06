@@ -28,7 +28,7 @@ public partial class PlayerStateManager : MonoBehaviour
 
         public void Update()
         {
-
+            Debug.Log("" + currentState);
             TrackHealthandFear();
 
             if(currentState != jumpState && currentState != fallState && !controller.isGrounded)
@@ -55,11 +55,13 @@ public partial class PlayerStateManager : MonoBehaviour
         public void Move()
         {
             controller.Move(walkSpeed * moveVector * Time.deltaTime);
+            Rotate();
         }
 
         public void Sprint()
         {
             controller.Move(sprintSpeed * moveVector * Time.deltaTime);
+            Rotate();
         }
 
         public void CrouchDown()

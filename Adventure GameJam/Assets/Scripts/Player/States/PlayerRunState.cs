@@ -7,27 +7,24 @@ namespace AGJ.Player
     {
         public override void EnterState(PlayerStateManager player)
         {
-
             
         }
 
         public override void ExitState(PlayerStateManager player)
         {
             
+
         }
 
         public override void UpdateState(PlayerStateManager player)
         {
-            if (player.moveVector.magnitude == 0)
+
+            if (player.currentState != player.walkState || player.currentState != player.idleState)
             {
-                player.SwitchState(player.idleState);
-            }
-            else
-            {
-                
                 player.Sprint();
-                player.Rotate();
             }
+           
+            
         }
     }
 }

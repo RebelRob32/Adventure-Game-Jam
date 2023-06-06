@@ -10,12 +10,11 @@ public partial class PlayerStateManager
    
         public void OnMove(InputValue value)
         {
-            if(currentState != runState)
-            {
+          
             inputVector = value.Get<Vector2>();
             moveVector.x = inputVector.x;
             moveVector.z = inputVector.y;
-            }
+            
             
         }
 
@@ -34,6 +33,7 @@ public partial class PlayerStateManager
            
             SwitchState(runState);
            
+
         }
 
         public void OnAttack(InputValue value)
